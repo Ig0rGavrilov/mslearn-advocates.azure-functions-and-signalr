@@ -83,11 +83,15 @@ az cosmosdb sql database create \
 
 printf "Creating CosmosDB container\n"
 # Create stocks container
+
+PARTITON_KEY="/symbol"
+
+printf $PARTITON_KEY
 az cosmosdb sql container create \
     --account-name $COMSOSDB_NAME \
     --database-name stocksdb \
     --name stocks \
-    --partition-key-path /symbol
+    --partition-key-path $PARTITON_KEY
 
 printf "Get storage connection string\n"
 
